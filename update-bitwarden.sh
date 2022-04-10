@@ -36,10 +36,10 @@ then
         echo ""
         echo "services:"
         echo "  api:"
-        echo "    image: bitbetter/api:$BW_VERSION"
+        echo "    image: bitbetter/api:latest"
         echo ""
         echo "  identity:"
-        echo "    image: bitbetter/identity:$BW_VERSION"
+        echo "    image: bitbetter/identity:latest"
         echo ""
     } > $BITWARDEN_BASE/bwdata/docker/docker-compose.override.yml
     echo "BitBetter docker-compose override created!"
@@ -50,8 +50,8 @@ fi
 # Check if user wants to rebuild the bitbetter images
 docker images bitbetter/api --format="{{ .Tag }}" | grep -F -- "${BW_VERSION}" > /dev/null
 retval=$?
-REBUILD_BB="n"
-REBUILD_BB_DESCR="[y/N]"
+REBUILD_BB="y"
+REBUILD_BB_DESCR="[Y/n]"
 if [ $retval -ne 0 ]; then
     REBUILD_BB="y"
     REBUILD_BB_DESCR="[Y/n]"
